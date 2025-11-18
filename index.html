@@ -1,67 +1,701 @@
-<!--
-StartSite — Professional Multi-Page Website (Single textdoc)
-Files included below (copy each into its own file in your GitHub repo):
-- index.html (Home)
-- about.html (About Us)
-- services.html (Services)
-- process.html (Our Process)
-- pricing.html (Pricing)
-- contact.html (Contact)
-- styles.css (Shared styles)
-- scripts.js (Shared scripts)
-
-
-Instructions:
-1. Create a GitHub repo named: startsitedesign.github.io
-2. Add each file below as separate files (e.g., click Add file → Create new file).
-3. Commit directly to main for each file.
-4. Visit https://startsitedesign.github.io to see the site.
-
-
-Notes:
-- The contact form is a demo. I included comments on how to connect a real form provider (Formspree/Netlify Forms).
-- Images use Unsplash placeholders — replace them with your business images.
-- Pricing tier range is $50–$65 as requested.
--->
-
-
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>StartSite — Professional Web Solutions for Mid-Sized Businesses</title>
-<meta name="description" content="StartSite builds modern, fast, and secure websites for growing businesses. Fixed pricing $50–$65. Design, e‑commerce, SEO, and analytics included.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StartSite — Luxury · Innovation · Trust</title>
+
+  <!-- Google Fonts (Heading: Playfair Display for elegant luxury, Body: Inter for modern clarity) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========== THEME VARIABLES ========== */
+    :root{
+      --bg:#0b0b0b;                 /* deep black */
+      --panel:#0f0f10;              /* slightly lighter black for panels */
+      --silver:#cfcfcf;            /* refined silver */
+      --silver-2:#bfbfbf;
+      --gold:#c59a3d;              /* warm gold */
+      --gold-2:#e0b86b;
+      --muted:#7d7d7d;
+      --glass: rgba(255,255,255,0.03);
+      --accent-gradient: linear-gradient(90deg, rgba(197,154,61,0.95), rgba(224,184,107,0.85));
+      --radius:14px;
+      --radius-sm:8px;
+      --max-width:1180px;
+      --ease: cubic-bezier(.2,.9,.2,1);
+    }
+
+    /* Reset & Base */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.02), transparent 8%),
+                  linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%),
+                  var(--bg);
+      color:var(--silver);
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Layout container */
+    .container{
+      max-width:var(--max-width);
+      margin:0 auto;
+      padding:48px 28px;
+    }
+
+    /* Header */
+    header{
+      position:sticky;
+      top:18px;
+      z-index:60;
+      backdrop-filter: blur(6px) saturate(120%);
+    }
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:26px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand-logo{
+      width:54px;
+      height:54px;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      display:grid;
+      place-items:center;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      transform:translateZ(0);
+    }
+    /* Logo glyph (stylized S) */
+    .brand-logo svg{width:40px;height:40px;display:block}
+    .brand-title{
+      display:flex;
+      flex-direction:column;
+      line-height:1;
+    }
+    .brand-title .name{
+      font-family: "Playfair Display", serif;
+      font-weight:700;
+      font-size:18px;
+      letter-spacing:0.6px;
+      color:var(--gold);
+    }
+    .brand-title .tag{
+      font-size:12px;
+      color:var(--muted);
+      margin-top:2px;
+    }
+
+    /* Nav */
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{
+      font-weight:600;
+      padding:8px 12px;
+      border-radius:10px;
+      transition: all 220ms var(--ease);
+      color:var(--silver);
+      font-size:14px;
+    }
+    nav a:hover{ color:var(--bg); background:var(--gold-2); transform:translateY(-3px); box-shadow:0 8px 30px rgba(197,154,61,0.12) }
+
+    .cta{
+      padding:10px 16px;
+      border-radius:12px;
+      background:var(--accent-gradient);
+      color:#0b0b0b;
+      font-weight:700;
+      box-shadow: 0 6px 24px rgba(197,154,61,0.12);
+      transition: transform 220ms var(--ease);
+    }
+    .cta:hover{ transform:translateY(-4px) }
+
+    /* HERO */
+    .hero{
+      display:grid;
+      grid-template-columns: 1fr 420px;
+      gap:36px;
+      align-items:center;
+      margin:10px 0 42px;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+      border-radius: var(--radius);
+      padding:42px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      position:relative;
+      overflow:visible;
+    }
+    .kicker{
+      display:inline-block;
+      font-weight:700;
+      font-size:13px;
+      color:var(--gold);
+      background: linear-gradient(90deg, rgba(197,154,61,0.06), rgba(224,184,107,0.03));
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:18px;
+      letter-spacing:0.6px;
+    }
+    h1{
+      margin:0 0 18px 0;
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      font-size:40px;
+      color: #fff;
+      line-height:1.04;
+      letter-spacing: -0.6px;
+    }
+    .hero p.lead{
+      color:var(--silver-2);
+      margin:0 0 26px 0;
+      font-size:16px;
+      max-width:54ch;
+    }
+    .hero-actions{display:flex;gap:14px;align-items:center}
+    .btn{
+      padding:12px 18px;
+      border-radius:12px;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,0.04);
+      background:transparent;
+      color:var(--silver);
+      transition: all 240ms var(--ease);
+      cursor:pointer;
+    }
+    .btn.primary{
+      background:var(--accent-gradient);
+      color:#080808;
+      box-shadow: 0 10px 30px rgba(197,154,61,0.12);
+    }
+    .btn.ghost{
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.06);
+    }
+
+    /* right panel - feature card with geometry */
+    .feature-panel{
+      padding:28px;
+      border-radius:12px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.012), rgba(255,255,255,0.008));
+      border:1px solid rgba(255,255,255,0.03);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      align-items:flex-start;
+      position:relative;
+      overflow:visible;
+    }
+    .feature-panel .metric{
+      font-size:28px;
+      font-weight:800;
+      color:var(--gold);
+    }
+    .feature-panel small{ color:var(--muted) }
+
+    /* Geometric stripes (decor) */
+    .geom{
+      position:absolute;
+      right:-40px;
+      top:-30px;
+      transform: rotate(18deg) scale(1);
+      opacity:0.12;
+      pointer-events:none;
+      filter: blur(0.6px);
+    }
+
+    /* SECTION: services */
+    section.cards{
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:22px;
+      margin-bottom:36px;
+    }
+    .card{
+      border-radius:12px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006));
+      padding:22px;
+      min-height:170px;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      transition: transform 320ms var(--ease), box-shadow 320ms var(--ease);
+    }
+    .card:hover{ transform: translateY(-8px) rotate(-0.2deg); box-shadow: 0 22px 60px rgba(0,0,0,0.7) }
+    .card h3{ margin:8px 0 12px 0; font-size:18px; color:#fff; font-weight:700 }
+    .card p{ color:var(--silver-2); font-size:14px; margin:0 0 12px 0 }
+
+    /* INNOVATION block: two-column grid */
+    .innovation{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:24px;
+      align-items:center;
+      margin-bottom:36px;
+    }
+    .innovation .code-like{
+      background:linear-gradient(180deg, rgba(15,15,15,0.85), rgba(10,10,10,0.7));
+      border-radius:12px;
+      padding:22px;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      font-size:13px;
+      line-height:1.6;
+    }
+    .innovation h3{ font-family:"Playfair Display", serif; font-weight:600; color:#fff; margin-bottom:10px }
+
+    /* PROFESSIONALISM highlights */
+    .highlights{
+      display:flex;
+      gap:18px;
+      align-items:stretch;
+      margin-bottom:36px;
+    }
+    .highlight{
+      flex:1;
+      border-radius:12px;
+      padding:18px;
+      background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
+      border:1px solid rgba(255,255,255,0.03);
+      text-align:center;
+      transition: transform 220ms var(--ease);
+    }
+    .highlight strong{ display:block; font-size:22px; margin-bottom:6px; color:var(--gold) }
+    .highlight p{ color:var(--muted); margin:0 }
+
+    /* BRAND STORY / ABOUT */
+    .story{
+      display:flex;
+      gap:26px;
+      align-items:center;
+      margin-bottom:48px;
+    }
+    .story .text{
+      flex:1;
+    }
+    .story .visual{
+      width:360px;
+      height:220px;
+      border-radius:14px;
+      background: linear-gradient(135deg, rgba(197,154,61,0.06), rgba(255,255,255,0.01));
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.6);
+      overflow:hidden;
+      position:relative;
+    }
+    .pill{
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.02);
+      border:1px solid rgba(255,255,255,0.03);
+      font-size:13px;
+      color:var(--silver-2);
+    }
+
+    /* Footer */
+    footer{
+      border-top:1px solid rgba(255,255,255,0.03);
+      padding:34px 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .footer-grid{
+      display:flex;
+      gap:24px;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+
+    /* Utility / small */
+    .muted{ color:var(--muted) }
+    .micro{ font-size:12px; color:var(--muted) }
+
+    /* Responsive */
+    @media (max-width:1080px){
+      .hero{ grid-template-columns: 1fr; }
+      .innovation{ grid-template-columns: 1fr; }
+      section.cards{ grid-template-columns: repeat(2, 1fr); }
+      .story{ flex-direction:column-reverse; align-items:flex-start }
+      .feature-panel{ order:2 }
+    }
+    @media (max-width:720px){
+      .header-inner{ flex-direction:column; align-items:flex-start; gap:10px }
+      section.cards{ grid-template-columns: 1fr }
+      .brand-logo{ width:46px; height:46px }
+      h1{ font-size:28px }
+      .hero-card{ padding:26px }
+      .container{ padding:26px 18px }
+    }
+
+    /* Subtle scroll reveal animations */
+    .reveal {
+      opacity:0;
+      transform: translateY(18px) scale(0.995);
+      transition: opacity 680ms var(--ease), transform 680ms var(--ease);
+      will-change: transform, opacity;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* prefer-reduced-motion support */
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; animation:none !important; }
+      .reveal{ transform:none; opacity:1 }
+    }
+  </style>
 </head>
 <body>
-<header class="site-header">
-<div class="container header-grid">
-<a class="brand" href="index.html">
-<div class="logo" aria-hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
-<div class="brand-text"><strong>StartSite</strong><small>Start strong — Start online</small></div>
-</a>
-<nav class="main-nav" aria-label="Primary Navigation">
-<a href="services.html">Services</a>
-<a href="process.html">Process</a>
-<a href="pricing.html">Pricing</a>
-<a href="about.html">About</a>
-<a href="contact.html" class="button">Get Started</a>
-</nav>
-</div>
-</header>
 
+  <div class="container">
+    <header>
+      <div class="header-inner reveal" id="header">
+        <div class="brand" aria-label="StartSite brand">
+          <div class="brand-logo" title="StartSite">
+            <!-- simple geometric S monogram -->
+            <svg viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+                  <stop offset="0" stop-color="rgba(197,154,61,1)" />
+                  <stop offset="1" stop-color="rgba(224,184,107,1)" />
+                </linearGradient>
+              </defs>
+              <rect x="0" y="0" width="100" height="100" rx="14" fill="none"/>
+              <path d="M70 28c-8-6-22-6-34 2-8 5-8 14 0 18 10 5 24 4 34-4" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path d="M30 72c8 6 22 6 34-2 8-5 8-14 0-18-10-5-24-4-34 4" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"></path>
+            </svg>
+          </div>
 
-<main>
-<section class="hero container" id="home-hero">
-<div class="hero-content">
-<h1>Professional websites for mid-sized businesses — predictable pricing</h1>
-<p class="lead">We build high-performance websites that look premium, load fast, and convert visitors into customers. Plans from <strong>$50–$65</strong>.</p>
-<div class="hero-actions">
-<a href="pricing.html" class="button primary">See Pricing</a>
-<a href="process.html" class="button ghost">How it works</a>
-</div>
-<ul class="hero-highlights">
-<li>Fast turnaround • 3–14 days</li>
-/* End of scripts.js */
+          <div class="brand-title">
+            <div class="name">StartSite</div>
+            <div class="tag micro">Luxury · Innovation · Trust</div>
+          </div>
+        </div>
+
+        <nav aria-label="Main navigation">
+          <a href="#services">Services</a>
+          <a href="#innovation">Innovation</a>
+          <a href="#professionalism">Professionalism</a>
+          <a href="#story">Story</a>
+          <a class="cta" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main>
+      <section class="hero">
+        <div class="hero-card reveal" id="heroCard" role="region" aria-labelledby="heroTitle">
+          <span class="kicker">Bespoke Digital Excellence</span>
+          <h1 id="heroTitle">StartSite — Where Luxury Meets Cutting-Edge Technology</h1>
+          <p class="lead">We craft premium digital experiences for brands that demand sophistication, security, and forward momentum. Our approach blends refined design, robust engineering, and strategic thinking to elevate presence and performance.</p>
+
+          <div class="hero-actions">
+            <button class="btn primary" onclick="scrollToSection('services')">Explore Services</button>
+            <button class="btn ghost" onclick="scrollToSection('story')">Our Story</button>
+          </div>
+
+          <!-- subtle decorative geometry -->
+          <svg class="geom" width="160" height="120" viewBox="0 0 160 120" aria-hidden="true">
+            <g fill="none" stroke="rgba(224,184,107,0.14)" stroke-width="10" stroke-linecap="round">
+              <path d="M8 100 L60 20 L120 100"></path>
+            </g>
+          </svg>
+        </div>
+
+        <aside class="feature-panel reveal" id="featurePanel">
+          <div>
+            <div class="metric">Enterprise-Grade</div>
+            <small class="micro">Secure architecture · Scalable systems · 24/7 reliability</small>
+          </div>
+
+          <div style="display:flex;gap:12px;margin-top:8px;">
+            <div style="flex:1">
+              <small class="micro">Avg. Launch Time</small>
+              <div style="font-weight:700;margin-top:6px;color:var(--silver)">8–12 weeks</div>
+            </div>
+            <div style="flex:1">
+              <small class="micro">Net Promoter Score</small>
+              <div style="font-weight:700;margin-top:6px;color:var(--silver)">92</div>
+            </div>
+          </div>
+
+          <div style="margin-top:auto">
+            <small class="micro">Featured work</small>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <div style="width:54px;height:34px;border-radius:8px;background:linear-gradient(90deg,var(--gold-2),rgba(255,255,255,0.04));box-shadow: 0 6px 20px rgba(197,154,61,0.08)"></div>
+              <div style="width:54px;height:34px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))"></div>
+              <div style="width:54px;height:34px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))"></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div>
+            <div class="kicker">Services</div>
+            <h2 style="font-family:'Playfair Display',serif;margin:6px 0 0;color:#fff">Premium Offerings</h2>
+            <p class="micro" style="margin-top:8px;color:var(--muted)">We combine design, strategy, and engineering into cohesive experiences.</p>
+          </div>
+        </div>
+
+        <div class="cards">
+          <article class="card reveal" aria-labelledby="svc1">
+            <div class="micro">Brand & Design</div>
+            <h3 id="svc1">Signature Visual Systems</h3>
+            <p>Beautiful, enduring visual identities with motion, typography, and pixel-perfect design that communicates prestige and clarity.</p>
+            <div class="micro">Studio · UI Systems · Motion</div>
+          </article>
+
+          <article class="card reveal" aria-labelledby="svc2">
+            <div class="micro">Product & Engineering</div>
+            <h3 id="svc2">Engineered for Scale</h3>
+            <p>Enterprise-grade web platforms with resilient architecture, performance tuning, and secure deployment pipelines.</p>
+            <div class="micro">Cloud · APIs · Performance</div>
+          </article>
+
+          <article class="card reveal" aria-labelledby="svc3">
+            <div class="micro">Strategy & Growth</div>
+            <h3 id="svc3">Data-Driven Growth</h3>
+            <p>Insight-led strategies, experimentation programs, and analytics that align product experiences with measurable outcomes.</p>
+            <div class="micro">Analytics · Roadmaps · Experiments</div>
+          </article>
+        </div>
+      </section>
+
+      <!-- INNOVATION -->
+      <section id="innovation" class="innovation reveal">
+        <div>
+          <h3>Innovation at the Core</h3>
+          <p class="micro" style="margin-bottom:12px;color:var(--muted)">We prototype rapidly and ship with confidence — blending emergent tech with timeless design.</p>
+
+          <ul style="list-style:none;padding:0;margin:0;display:grid;gap:10px">
+            <li><span class="pill">AI-enabled personalization</span></li>
+            <li><span class="pill">Headless & composable architecture</span></li>
+            <li><span class="pill">Privacy-first analytics</span></li>
+          </ul>
+
+          <div style="margin-top:18px">
+            <button class="btn primary" onclick="scrollToSection('contact')">Talk Innovation</button>
+          </div>
+        </div>
+
+        <div class="code-like" aria-hidden="false">
+<pre style="margin:0;">
+<span style="color:var(--silver-2)">// StartSite – simplified config sample</span>
+{
+  "strategy": "privacy-first",
+  "stack": [
+    "headless-cms",
+    "edge-functions",
+    "secure-cdn",
+    "serverless-ai"
+  ],
+  "goals": {
+    "performance": "p99 &gt; 95%",
+    "availability": "99.99%",
+    "nps": "&gt;=85"
+  }
+}
+</pre>
+        </div>
+      </section>
+
+      <!-- PROFESSIONALISM -->
+      <section id="professionalism" class="reveal">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+          <div>
+            <div class="kicker">Professionalism</div>
+            <h2 style="font-family:'Playfair Display',serif;margin:6px 0 0;color:#fff">Built with Rigor</h2>
+            <p class="micro" style="margin-top:8px;color:var(--muted)">From compliance to launch, we govern every detail to preserve trust and quality.</p>
+          </div>
+        </div>
+
+        <div class="highlights">
+          <div class="highlight reveal">
+            <strong>Compliance</strong>
+            <p>GDPR, SOC2, accessibility audits returned to a gold standard.</p>
+          </div>
+
+          <div class="highlight reveal">
+            <strong>Security</strong>
+            <p>Secure-by-design architecture with automated threat monitoring and response.</p>
+          </div>
+
+          <div class="highlight reveal">
+            <strong>Delivery</strong>
+            <p>Dedicated account teams, transparent timelines, and predictable outcomes.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BRAND STORY -->
+      <section id="story" class="story reveal">
+        <div class="text">
+          <div class="kicker">Our Story</div>
+          <h3 style="font-family:'Playfair Display',serif;margin-top:6px;color:#fff">A lineage of craft & technology</h3>
+          <p class="micro" style="margin-top:12px;color:var(--silver-2)">StartSite was founded to reimagine how premium brands present themselves online — balancing the quiet restraint of classic luxury with the velocity of modern product teams. Our teams are multidisciplinary: designers, engineers, and strategists who think like partners.</p>
+          <p class="micro" style="margin-top:12px;color:var(--muted)">We value transparency, long-term relationships, and measurable impact.</p>
+          <div style="margin-top:16px">
+            <button class="btn" onclick="scrollToSection('contact')">Connect with Us</button>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <!-- layered geometric motif -->
+          <svg width="320" height="280" viewBox="0 0 320 280" aria-hidden="true">
+            <defs>
+              <linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="rgba(197,154,61,0.12)"/><stop offset="1" stop-color="rgba(224,184,107,0.06)"/></linearGradient>
+            </defs>
+            <rect x="20" y="40" width="260" height="180" rx="18" fill="none" stroke="url(#lg)" stroke-width="6" opacity="0.9"/>
+            <rect x="60" y="20" width="200" height="140" rx="12" fill="none" stroke="rgba(255,255,255,0.02)" stroke-width="2"/>
+            <circle cx="260" cy="40" r="28" fill="rgba(224,184,107,0.06)"/>
+          </svg>
+        </div>
+      </section>
+
+      <!-- CONTACT / CTA -->
+      <section id="contact" class="reveal" style="margin-bottom:36px">
+        <div style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+          <div>
+            <h3 style="font-family:'Playfair Display',serif;margin:0 0 6px;color:#fff">Work with StartSite</h3>
+            <p class="micro" style="margin:0;color:var(--muted)">Private consultations available. We partner with a small cohort of clients each quarter.</p>
+          </div>
+
+          <form onsubmit="event.preventDefault(); handleContact(this)" style="display:flex;gap:12px;align-items:center;">
+            <input name="email" type="email" placeholder="Email address" required style="padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--silver);outline:none"/>
+            <button class="btn primary" type="submit">Request Consultation</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+            <div class="brand-logo" style="width:40px;height:40px;border-radius:8px">
+              <!-- mini glyph -->
+              <svg viewBox="0 0 100 100" width="36" height="36" aria-hidden="true">
+                <path d="M70 28c-8-6-22-6-34 2-8 5-8 14 0 18 10 5 24 4 34-4" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round"/>
+                <defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#c59a3d"/><stop offset="1" stop-color="#e0b86b"/></linearGradient></defs>
+              </svg>
+            </div>
+            <div style="font-weight:700;color:var(--gold)">StartSite</div>
+          </div>
+          <div class="micro">© <span id="year"></span> StartSite — Crafted experiences for ambitious brands</div>
+        </div>
+
+        <div class="micro" style="display:flex;gap:12px;align-items:center">
+          <div>Terms</div>
+          <div>Privacy</div>
+          <div>Careers</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth scroll helper
+    function scrollToSection(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Reveal on scroll with IntersectionObserver
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(prefersReduced) {
+        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+        return;
+      }
+
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, {threshold:0.12});
+
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    })();
+
+    // Tiny contact handler (simulated)
+    function handleContact(form){
+      const email = form.email.value.trim();
+      if(!email) return;
+      // show a subtle confirmation — unobtrusive toast
+      showToast(`Thanks — we've received your request (${escapeHtml(email)}). We'll reach out soon.`);
+      form.reset();
+    }
+
+    // Simple toast UI
+    function showToast(text){
+      const el = document.createElement('div');
+      el.textContent = text;
+      Object.assign(el.style, {
+        position:'fixed',
+        right:'20px',
+        bottom:'18px',
+        padding:'12px 16px',
+        background:'linear-gradient(90deg, rgba(197,154,61,0.95), rgba(224,184,107,0.9))',
+        color:'#080808',
+        borderRadius:'10px',
+        boxShadow:'0 18px 50px rgba(0,0,0,0.6)',
+        fontWeight:700,
+        zIndex:9999,
+        maxWidth:'min(420px, calc(100vw - 40px))'
+      });
+      document.body.appendChild(el);
+      setTimeout(()=> { el.style.opacity = '0'; el.style.transition = 'opacity 420ms ease'; }, 3000);
+      setTimeout(()=> el.remove(), 3600);
+    }
+
+    // small helper to avoid XSS in toast
+    function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+    // Accessibility tweak: keyboard focus outline
+    (function(){
+      function handleFirstTab(e) {
+        if (e.key === 'Tab') {
+          document.documentElement.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>
