@@ -1,48 +1,67 @@
+<!--
+StartSite — Professional Multi-Page Website (Single textdoc)
+Files included below (copy each into its own file in your GitHub repo):
+- index.html (Home)
+- about.html (About Us)
+- services.html (Services)
+- process.html (Our Process)
+- pricing.html (Pricing)
+- contact.html (Contact)
+- styles.css (Shared styles)
+- scripts.js (Shared scripts)
+
+
+Instructions:
+1. Create a GitHub repo named: startsitedesign.github.io
+2. Add each file below as separate files (e.g., click Add file → Create new file).
+3. Commit directly to main for each file.
+4. Visit https://startsitedesign.github.io to see the site.
+
+
+Notes:
+- The contact form is a demo. I included comments on how to connect a real form provider (Formspree/Netlify Forms).
+- Images use Unsplash placeholders — replace them with your business images.
+- Pricing tier range is $50–$65 as requested.
+-->
+
+
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>StartSite — Professional Solutions for Growing Businesses</title>
-<meta name="description" content="StartSite helps mid-sized businesses go digital with elegant websites, shops and growth tools. Plans $50 - $65. Fast, secure, professional." />
-<meta name="theme-color" content="#0f172a">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>StartSite — Professional Web Solutions for Mid-Sized Businesses</title>
+<meta name="description" content="StartSite builds modern, fast, and secure websites for growing businesses. Fixed pricing $50–$65. Design, e‑commerce, SEO, and analytics included.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="site-header">
+<div class="container header-grid">
+<a class="brand" href="index.html">
+<div class="logo" aria-hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div>
+<div class="brand-text"><strong>StartSite</strong><small>Start strong — Start online</small></div>
+</a>
+<nav class="main-nav" aria-label="Primary Navigation">
+<a href="services.html">Services</a>
+<a href="process.html">Process</a>
+<a href="pricing.html">Pricing</a>
+<a href="about.html">About</a>
+<a href="contact.html" class="button">Get Started</a>
+</nav>
+</div>
+</header>
 
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-<!-- Ionicons for icons -->
-<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
-
-<style>
-:root{
---bg:#0f172a; /* deep navy */
---card:#0b1220; /* slightly lighter */
---muted:#94a3b8; /* soft gray */
---accent:#7c5cff; /* violet accent */
---accent-2:#00d4ff;/* cyan accent */
---glass: rgba(255,255,255,0.04);
---radius:14px;
---max-width:1200px;
-color-scheme: dark;
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-margin:0;
-font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
-background: radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,0.08), transparent),
-linear-gradient(180deg, var(--bg), #071025 120%);
-color:#e6eef8;
--webkit-font-smoothing:antialiased;
--moz-osx-font-smoothing:grayscale;
-line-height:1.5;
-padding-bottom:60px;
-}
-
-
-.container{max-width:var(--max-width);margin:0 auto;padding:24px}
-
-
-/* NAV */
+<main>
+<section class="hero container" id="home-hero">
+<div class="hero-content">
+<h1>Professional websites for mid-sized businesses — predictable pricing</h1>
+<p class="lead">We build high-performance websites that look premium, load fast, and convert visitors into customers. Plans from <strong>$50–$65</strong>.</p>
+<div class="hero-actions">
+<a href="pricing.html" class="button primary">See Pricing</a>
+<a href="process.html" class="button ghost">How it works</a>
+</div>
+<ul class="hero-highlights">
+<li>Fast turnaround • 3–14 days</li>
+/* End of scripts.js */
