@@ -5,35 +5,31 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StartSite — Luxury · Trusted Digital Experiences</title>
 
-  <!-- Fonts: Playfair Display (headings) + Inter (body) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Meta -->
-  <meta name="description" content="StartSite — premium web experiences combining luxury design with enterprise-grade engineering. Clear onboarding for new clients." />
+  <meta name="description" content="StartSite — premium web experiences combining luxury design with enterprise-grade engineering." />
 
   <style>
-    /* ====== THEME VARIABLES - edit to customize colors/spacing ====== */
     :root{
-      --bg: #070707;                /* deep black */
-      --panel: #0e0e10;             /* panel shade */
-      --silver: #d6d6d6;
-      --muted: #9a9a9a;
-      --gold: #bf9538;              /* refined gold */
-      --gold-2: #e7c17b;
-      --glass: rgba(255,255,255,0.03);
-      --accent: linear-gradient(90deg,var(--gold),var(--gold-2));
-      --radius: 12px;
-      --max-width: 1200px;
-      --ease: cubic-bezier(.2,.9,.2,1);
-      --focus-ring: 3px;
+      --bg:#070707;
+      --panel:#0e0e10;
+      --silver:#d6d6d6;
+      --muted:#9a9a9a;
+      --gold:#bf9538;
+      --gold-2:#e7c17b;
+      --glass:rgba(255,255,255,0.03);
+      --accent:linear-gradient(90deg,var(--gold),var(--gold-2));
+      --radius:12px;
+      --max-width:1200px;
+      --ease:cubic-bezier(.2,.9,.2,1);
+      --focus-ring:3px;
     }
 
-    /* ====== RESET / BASE ====== */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
       font-size:16px;
       color:var(--silver);
       background:
@@ -44,577 +40,214 @@
       -moz-osx-font-smoothing:grayscale;
       line-height:1.5;
     }
-    a{color:inherit;text-decoration:none}
-    img{max-width:100%;height:auto;display:block}
 
-    /* ====== LAYOUT ====== */
+    a{text-decoration:none;color:inherit}
+
     .container{
       max-width:var(--max-width);
       margin:0 auto;
       padding:36px 20px;
     }
 
-    /* Skip link for keyboard users */
-    .skip-link{
-      left:8px;
-      top:8px;
-      transform:translateY(-120%);
-      position:fixed;
-      background:#fff;color:#000;padding:8px 10px;border-radius:6px;z-index:9999;
-    }
-    .skip-link:focus{ transform:none; outline: none; box-shadow: 0 0 0 var(--focus-ring) rgba(191,149,56,0.15) }
-
-    /* ====== HEADER ====== */
-    header{ position:sticky; top:14px; z-index:60; backdrop-filter: blur(6px); margin-bottom:18px; }
-    .header-inner{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      padding:10px 0;
-    }
-    .brand{
-      display:flex;align-items:center;gap:12px;
-    }
+    /* Header */
+    header{position:sticky;top:14px;z-index:60;backdrop-filter:blur(6px);margin-bottom:18px;}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;padding:10px 0;}
+    .brand{display:flex;align-items:center;gap:12px}
     .logo{
-      width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:grid;place-items:center;border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      width:52px;height:52px;border-radius:10px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,0.04);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow:0 10px 30px rgba(0,0,0,0.6);
     }
-    .brand .title{ display:flex;flex-direction:column;line-height:1 }
-    .brand .name{ font-family:'Playfair Display', serif; font-weight:700; color:var(--gold); font-size:18px; letter-spacing:.4px }
-    .brand .tag{ font-size:12px; color:var(--muted) }
+    .brand .name{font-family:'Playfair Display',serif;font-weight:700;color:var(--gold);}
+    .brand .tag{font-size:12px;color:var(--muted);}
+    nav{display:flex;gap:14px;}
+    nav a{
+      padding:8px 12px;border-radius:10px;font-weight:600;font-size:14px;
+      transition:all 180ms var(--ease);
+    }
+    nav a:hover{color:#000;background:var(--gold-2);transform:translateY(-3px)}
+    .cta{
+      padding:10px 16px;border-radius:12px;font-weight:700;background:var(--accent);
+      color:#0b0b0b;box-shadow:0 8px 30px rgba(191,149,56,0.12);
+    }
 
-    /* NAV */
-    nav{ display:flex; gap:14px; align-items:center; }
-    nav a{ padding:8px 12px; border-radius:10px; font-weight:600; color:var(--silver); font-size:14px; transition: all 180ms var(--ease) }
-    nav a:hover, nav a:focus{ color:#0b0b0b; background:var(--gold-2); transform:translateY(-3px) }
-    .cta{ padding:10px 16px; border-radius:12px; background:var(--accent); color:#0b0b0b; font-weight:700; box-shadow: 0 8px 30px rgba(191,149,56,0.12) }
-
-    /* ====== HERO ====== */
+    /* Hero */
     .hero{
       display:grid;
-      grid-template-columns: 1fr 420px;
+      grid-template-columns:1fr 420px;
       gap:28px;
       align-items:center;
       margin:6px 0 36px;
     }
     .hero-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.008));
-      border-radius: var(--radius);
+      background:rgba(255,255,255,0.015);
+      border-radius:var(--radius);
       padding:36px;
       border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+      box-shadow:0 30px 80px rgba(0,0,0,0.65);
     }
-    .kicker{ display:inline-block; font-weight:700; font-size:13px; color:var(--gold); background:rgba(191,149,56,0.06); padding:6px 10px; border-radius:999px; margin-bottom:12px }
-    h1{ margin:6px 0 14px; font-family:'Playfair Display',serif; font-size:36px; color:#fff; line-height:1.05 }
-    .lead{ color:var(--silver); font-size:16px; max-width:58ch; margin-bottom:18px }
-    .hero-cta{ display:flex; gap:12px; align-items:center; flex-wrap:wrap }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:46px;font-weight:700;margin:0 0 16px;
+    }
+    .hero p{color:var(--muted);max-width:480px;margin:0 0 24px;}
 
+    /* Kicker */
+    .kicker{
+      display:inline-block;
+      font-weight:700;font-size:13px;color:var(--gold);
+      background:rgba(191,149,56,0.06);
+      padding:6px 10px;border-radius:999px;margin-bottom:12px;
+    }
+    .kicker.clickable{cursor:pointer;transition:opacity .18s, transform .18s;}
+    .kicker.clickable:hover{opacity:.85;transform:translateY(-2px)}
+
+    /* Buttons */
     .btn{
-      padding:12px 16px; border-radius:10px; border:1px solid rgba(255,255,255,0.04); font-weight:700; cursor:pointer; background:transparent; color:var(--silver);
+      padding:12px 20px;border-radius:12px;font-weight:700;border:none;
+      cursor:pointer;font-size:15px;transition:all 200ms var(--ease);
     }
-    .btn.primary{ background:var(--accent); color:#0b0b0b; box-shadow: 0 10px 30px rgba(191,149,56,0.12) }
-    .btn.secondary{ background:transparent; border:1px solid rgba(255,255,255,0.06) }
-
-    /* Hero microtrust: small trust row */
-    .trust-row{ display:flex; gap:10px; margin-top:16px; align-items:center; flex-wrap:wrap }
-    .badge{ display:flex; gap:8px; align-items:center; padding:8px 10px; border-radius:10px; background:rgba(255,255,255,0.02); color:var(--muted); font-size:13px; border:1px solid rgba(255,255,255,0.03) }
-    .badge svg{ width:16px;height:16px; opacity:0.9 }
-
-    /* Right panel: simplified feature/trust */
-    .feature-panel{ padding:22px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008)); border:1px solid rgba(255,255,255,0.03); box-shadow:0 18px 40px rgba(0,0,0,0.6) }
-    .metric{ font-size:20px; font-weight:800; color:var(--gold); margin-bottom:6px }
-    .muted{ color:var(--muted) }
-
-    /* ====== SECTIONS ====== */
-    section{ margin-bottom:28px; }
-    .section-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px }
-    .section-head h2{ margin:0; font-family:'Playfair Display',serif; color:#fff }
-    .section-sub{ color:var(--muted); font-size:14px }
-
-    /* Services cards */
-    .cards{ display:grid; grid-template-columns: repeat(3,1fr); gap:18px; }
-    .card{ padding:18px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.006)); border:1px solid rgba(255,255,255,0.03); box-shadow:0 10px 30px rgba(0,0,0,0.6); transition:transform 240ms var(--ease) }
-    .card:hover{ transform:translateY(-6px) }
-    .card h3{ margin:12px 0 8px; color:#fff }
-    .card p{ margin:0; color:var(--silver) }
-
-    /* How we work - simplified steps for beginners */
-    .steps{ display:flex; gap:14px; align-items:stretch; flex-wrap:wrap }
-    .step{ flex:1; min-width:200px; background:rgba(255,255,255,0.008); padding:16px; border-radius:10px; border:1px solid rgba(255,255,255,0.03) }
-    .step .num{ background:linear-gradient(90deg,var(--gold),var(--gold-2)); color:#080808; font-weight:800; width:42px; height:42px; border-radius:9px; display:grid;place-items:center; margin-bottom:10px }
-
-    /* Testimonials / logos */
-    .trust-grid{ display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:10px }
-    .logo-pill{ padding:10px;border-radius:8px;background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); color:var(--muted); font-weight:700; font-size:13px }
-
-    /* FAQ */
-    .faq{ display:grid; gap:10px; }
-    .faq-item{ background:rgba(255,255,255,0.01); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.03); }
-    .faq-item summary{ font-weight:700; cursor:pointer; list-style:none }
-    .faq-item p{ margin:8px 0 0; color:var(--silver) }
-
-    /* Contact form - upgraded styling for luxury theme */
-    .contact-form {
-      display:flex;
-      flex-direction:column;
-      gap:14px;
-      width:100%;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.006));
-      padding:22px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03);
-      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+    .btn.primary{
+      background:var(--accent);color:#0b0b0b;
+      box-shadow:0 10px 28px rgba(191,149,56,0.15);
     }
-
-    .contact-row { gap:12px; align-items:center; flex-wrap:wrap; display:flex; }
-
-    .contact-form label { font-weight:700; font-size:14px; color:var(--silver); margin-bottom:6px; }
-    .contact-form .field { display:flex; flex-direction:column; }
-
-    .contact-form input[type="text"],
-    .contact-form input[type="email"],
-    .contact-form textarea {
-      padding:12px 14px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.06);
-      background:transparent;
-      color:var(--silver);
-      font-size:15px;
-      outline:none;
+    .btn.primary:hover{transform:translateY(-3px)}
+    .btn.secondary{
+      background:#1a1a1a;color:var(--silver);
+      border:1px solid rgba(255,255,255,0.08);
     }
+    .btn.secondary:hover{transform:translateY(-3px);border-color:rgba(255,255,255,0.18)}
 
-    .contact-form textarea { min-height:110px; resize:vertical; }
-
-    .contact-form input:focus, .contact-form textarea:focus {
-      box-shadow: 0 0 0 var(--focus-ring) rgba(191,149,56,0.12);
-      border-color: rgba(191,149,56,0.4);
+    /* Sections */
+    section{
+      margin:68px 0;padding:40px 0;
+      border-top:1px solid rgba(255,255,255,0.03);
     }
-
-    .contact-btn {
-      padding:12px 16px;
-      border-radius:10px;
-      border:none;
-      background: linear-gradient(90deg,var(--gold),var(--gold-2));
-      color:#080808;
-      font-weight:800;
-      font-size:16px;
-      cursor:pointer;
-      align-self:flex-start;
-      box-shadow: 0 12px 36px rgba(191,149,56,0.12);
-      transition: transform 160ms var(--ease), box-shadow 160ms var(--ease);
+    section h2{
+      font-family:'Playfair Display',serif;
+      font-size:32px;margin:0 0 10px;color:#fff;
     }
-    .contact-btn:hover{ transform: translateY(-3px); box-shadow: 0 18px 46px rgba(191,149,56,0.18); }
+    section p{color:var(--muted);max-width:620px;}
 
-    .privacy-note { font-size:13px; color:var(--muted); margin-top:6px; }
-
-    /* Footer */
-    footer{ border-top:1px solid rgba(255,255,255,0.03); padding:26px 0; color:var(--muted); font-size:14px }
-
-    /* Accessibility: visible focus for keyboard users */
-    :focus{ outline:none }
-    :focus-visible{ box-shadow: 0 0 0 var(--focus-ring) rgba(191,149,56,0.16); border-radius:8px }
-
-    /* Reveal animation (subtle) */
-    .reveal{ opacity:0; transform:translateY(14px) scale(.997); transition: opacity 520ms var(--ease), transform 520ms var(--ease) }
-    .reveal.visible{ opacity:1; transform:none }
-
-    /* Reduced motion: remove animations */
-    @media (prefers-reduced-motion: reduce){
-      .reveal{ transition:none; opacity:1; transform:none }
-      *{ transition:none !important }
-    }
-
-    /* Responsive */
-    @media (max-width:1080px){
-      .hero{ grid-template-columns:1fr; }
-      .cards{ grid-template-columns: repeat(2,1fr); }
-      .contact-form { padding:18px; }
-    }
-    @media (max-width:720px){
-      .cards{ grid-template-columns:1fr; }
-      .header-inner{ flex-direction:column; align-items:flex-start; gap:10px }
-      h1{ font-size:28px }
-      .feature-panel{ order:2 }
+    footer{
+      margin-top:60px;padding:30px 20px;text-align:center;
+      border-top:1px solid rgba(255,255,255,0.05);
+      color:var(--muted);font-size:14px;
     }
   </style>
 </head>
+
 <body>
-  <!-- Skip link for keyboard users -->
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <div class="container" id="page">
-    <!-- Header -->
-    <header>
-      <div class="header-inner reveal" id="header">
-        <div class="brand" aria-label="StartSite Brand">
-          <div class="logo" aria-hidden="true">
-            <!-- Simple monogram for brand identity -->
-            <svg viewBox="0 0 100 100" width="44" height="44" aria-hidden="true">
-              <defs>
-                <linearGradient id="g" x1="0" x2="1">
-                  <stop offset="0" stop-color="#bf9538"/>
-                  <stop offset="1" stop-color="#e7c17b"/>
-                </linearGradient>
-              </defs>
-              <rect width="100" height="100" rx="12" fill="rgba(255,255,255,0.01)"/>
-              <path d="M70 28c-8-6-22-6-34 2-8 5-8 14 0 18 10 5 24 4 34-4" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round"></path>
-              <path d="M30 72c8 6 22 6 34-2 8-5 8-14 0-18-10-5-24-4-34 4" fill="none" stroke="url(#g)" stroke-width="6" stroke-linecap="round"></path>
-            </svg>
-          </div>
-
-          <div class="title">
-            <div class="name">StartSite</div>
-            <div class="tag">Luxury · Trusted · Beginner-friendly</div>
-          </div>
-        </div>
-
-        <!-- Primary navigation -->
-        <nav aria-label="Main Navigation">
-          <a href="#services">Services</a>
-          <a href="#innovation">Innovation</a>
-          <a href="#how">How it works</a>
-          <a href="#faq">FAQ</a>
-          <a class="cta" href="#contact">Get a Consultation</a>
-        </nav>
+<header>
+  <div class="container header-inner">
+    <div class="brand">
+      <div class="logo">SS</div>
+      <div>
+        <div class="name">StartSite</div>
+        <div class="tag">Digital Luxury</div>
       </div>
-    </header>
+    </div>
 
-    <!-- MAIN CONTENT -->
-    <main id="main" class="reveal">
-      <!-- HERO -->
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-card">
-          <div class="kicker">Start with confidence</div>
-          <h1 id="hero-title">StartSite — Premium websites that feel effortless</h1>
-          <p class="lead">We design and build elegant, secure, and performant digital experiences — with a clear, step-by-step process for first-time customers. No jargon. No surprises.</p>
+    <nav>
+      <a href="#" onclick="smoothScrollTo('how')">How it works</a>
+      <a href="#" onclick="smoothScrollTo('contact')">Contact</a>
+      <a class="cta" href="#" onclick="smoothScrollTo('contact')">Request Consultation</a>
+    </nav>
+  </div>
+</header>
 
-          <!-- Primary CTA + secondary action -->
-          <div class="hero-cta" role="group" aria-label="Primary calls to action">
-            <button class="btn primary" onclick="scrollTo('contact')">Request a Consultation</button>
-            <button class="btn secondary" onclick="scrollTo('how')">How it works — 3 steps</button>
-          </div>
+<main id="main">
 
-          <!-- Trust badges & social proof (short) -->
-          <div class="trust-row" aria-hidden="true">
-            <div class="badge" title="SOC 2 compliant">
-              <!-- simple shield icon -->
-              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 1L3 5v6c0 5 3.9 9.74 9 11 5.1-1.26 9-6 9-11V5l-9-4z"></path></svg>
-              SOC2-ready
-            </div>
-            <div class="badge" title="High client satisfaction">⭐ 4.9 / 5 client rating</div>
-            <div class="badge" title="NDA & privacy-first">Privacy-first • NDA available</div>
-          </div>
-        </div>
+  <!-- HERO -->
+  <div class="container hero">
+    <div class="hero-card">
+      <div class="kicker">Premium Websites</div>
 
-        <!-- Right panel: clear stats and next steps for beginners -->
-        <aside class="feature-panel" aria-labelledby="feature-title">
-          <div id="feature-title" class="metric">Trusted by brands</div>
-          <div class="muted">We partner with a focused set of clients to ensure quality.</div>
+      <h1>Luxury, Trust & Performance For Your Digital Presence</h1>
 
-          <div style="margin-top:14px">
-            <div style="display:flex;gap:10px;">
-              <div style="flex:1">
-                <div class="muted">Avg. Launch</div>
-                <div style="font-weight:700;color:var(--silver)">8–12 weeks</div>
-              </div>
-              <div style="flex:1">
-                <div class="muted">Satisfaction</div>
-                <div style="font-weight:700;color:var(--silver)">NPS 92</div>
-              </div>
-            </div>
-          </div>
+      <p>We build modern, elegant, high-performance websites with a frictionless onboarding experience and 24/7 support.</p>
 
-          <div style="margin-top:14px">
-            <div class="muted">Beginner-friendly</div>
-            <div style="font-size:13px;color:var(--silver);margin-top:6px">No technical setup required — we guide you every step of the way.</div>
-          </div>
-        </aside>
-      </section>
-
-      <!-- SERVICES -->
-      <section id="services" class="reveal" aria-labelledby="services-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Services</div>
-            <h2 id="services-title">What we offer</h2>
-            <div class="section-sub">Clear service packages with transparent scope and pricing guidance.</div>
-          </div>
-        </div>
-
-        <div class="cards" role="list">
-          <!-- Each card has a short summary and a "Beginner friendly" hint -->
-          <article class="card" role="listitem" aria-labelledby="svc-1-title">
-            <div class="micro muted">Design</div>
-            <h3 id="svc-1-title">Brand & Visual System</h3>
-            <p>Elegant identity, style systems, and UI that keeps your brand consistent across channels.</p>
-            <div style="margin-top:12px" class="muted">Perfect for teams starting from scratch — we provide templates and onboarding.</div>
-          </article>
-
-          <article class="card" role="listitem" aria-labelledby="svc-2-title">
-            <div class="micro muted">Engineering</div>
-            <h3 id="svc-2-title">Web Platform & Hosting</h3>
-            <p>Performance-first websites, secure deployments, and maintenance plans so you don't manage infrastructure.</p>
-            <div style="margin-top:12px" class="muted">We handle DNS, hosting and security — you get a handover guide.</div>
-          </article>
-
-          <article class="card" role="listitem" aria-labelledby="svc-3-title">
-            <div class="micro muted">Growth</div>
-            <h3 id="svc-3-title">Analytics & Optimization</h3>
-            <p>Privacy-respecting analytics, conversion optimization, and measurable growth plans tailored to your goals.</p>
-            <div style="margin-top:12px" class="muted">Starter dashboards and monthly check-ins included.</div>
-          </article>
-        </div>
-      </section>
-
-      <!-- INNOVATION -->
-      <section id="innovation" class="reveal" aria-labelledby="innovation-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Innovation</div>
-            <h2 id="innovation-title">Modern tech, responsibly applied</h2>
-            <div class="section-sub">We combine best-practice architecture with accessible product decisions.</div>
-          </div>
-        </div>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start">
-          <div>
-            <p class="muted">From composable platforms to discrete AI enhancements, our solutions prioritize reliability, privacy, and maintainability.</p>
-            <ul style="margin-top:12px;color:var(--silver)">
-              <li>Headless CMS & modular components</li>
-              <li>Privacy-first personalization</li>
-              <li>Automated performance & security scans</li>
-            </ul>
-
-            <div style="margin-top:14px">
-              <button class="btn primary" onclick="scrollTo('contact')">Talk about tech</button>
-            </div>
-          </div>
-
-          <!-- Visual code-like summary for clarity -->
-          <div style="background:rgba(255,255,255,0.01);padding:16px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', monospace;color:var(--muted);">
-<pre style="margin:0;font-size:13px;">
-// Example stack (simplified)
-stack: [
-  "headless CMS",
-  "edge CDN",
-  "secure auth",
-  "automated backups"
-]
-goals: { performance: "fast", privacy: "high", uptime: "99.99%" }
-</pre>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS (Beginner friendly) -->
-      <section id="how" class="reveal" aria-labelledby="how-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Getting started</div>
-            <h2 id="how-title">How StartSite works — three simple steps</h2>
-            <div class="section-sub">A simple, guided onboarding so non-technical founders feel confident.</div>
-          </div>
-        </div>
-
-        <div class="steps" role="list">
-          <div class="step" role="listitem" aria-labelledby="step1">
-            <div class="num">1</div>
-            <div id="step1" style="font-weight:700;color:#fff">Intro & Goals</div>
-            <div class="muted" style="margin-top:8px">We discuss goals, audience, and success metrics in a short call. Expect clear deliverables.</div>
-          </div>
-
-          <div class="step" role="listitem" aria-labelledby="step2">
-            <div class="num">2</div>
-            <div id="step2" style="font-weight:700;color:#fff">Design & Approval</div>
-            <div class="muted" style="margin-top:8px">We show design options and iterate until you're delighted — with one focused review cycle.</div>
-          </div>
-
-          <div class="step" role="listitem" aria-labelledby="step3">
-            <div class="num">3</div>
-            <div id="step3" style="font-weight:700;color:#fff">Launch & Handover</div>
-            <div class="muted" style="margin-top:8px">We launch, test with you, and deliver a friendly handover guide and optional maintenance plan.</div>
-          </div>
-        </div>
-
-        <!-- Quick reassurance -->
-        <div style="margin-top:14px" class="muted">No technical background required — we'll translate decisions into simple options and next steps.</div>
-      </section>
-
-      <!-- TRUST / CLIENTS / TESTIMONIALS -->
-      <section id="trust" class="reveal" aria-labelledby="trust-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Trust</div>
-            <h2 id="trust-title">Proof & reassurance</h2>
-            <div class="section-sub">Small but credible signals that reduce friction for beginners.</div>
-          </div>
-        </div>
-
-        <div>
-          <div class="trust-grid" aria-hidden="false">
-            <div class="logo-pill">Enterprise</div>
-            <div class="logo-pill">Finance</div>
-            <div class="logo-pill">Retail</div>
-            <div class="logo-pill">Wellness</div>
-            <div class="logo-pill">Tech</div>
-          </div>
-
-          <!-- Short testimonials (concise, readable) -->
-          <div style="margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-            <blockquote style="background:rgba(255,255,255,0.01);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--silver);">
-              <strong style="color:var(--gold);display:block;margin-bottom:6px">"Clear, calm, and fast."</strong>
-              <small class="muted">— Alex R., Founder</small>
-            </blockquote>
-
-            <blockquote style="background:rgba(255,255,255,0.01);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--silver);">
-              <strong style="color:var(--gold);display:block;margin-bottom:6px">"We felt supported every step."</strong>
-              <small class="muted">— Priya K., Head of Marketing</small>
-            </blockquote>
-          </div>
-        </div>
-      </section>
-
-      <!-- FAQ -->
-      <section id="faq" class="reveal" aria-labelledby="faq-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">FAQ</div>
-            <h2 id="faq-title">Common questions for new clients</h2>
-            <div class="section-sub">Short answers to reduce friction and uncertainty.</div>
-          </div>
-        </div>
-
-        <div class="faq" role="list">
-          <details class="faq-item" role="listitem" open>
-            <summary>How long will my project take?</summary>
-            <p>Typical launches are 8–12 weeks depending on scope. We set a realistic timeline during the initial call.</p>
-          </details>
-
-          <details class="faq-item" role="listitem">
-            <summary>Do you handle hosting & maintenance?</summary>
-            <p>Yes — we offer hosting and optional maintenance packages so you don't manage infrastructure.</p>
-          </details>
-
-          <details class="faq-item" role="listitem">
-            <summary>Are there extra fees for revisions?</summary>
-            <p>We include one main design revision round in the standard scope. Additional requests are quoted transparently.</p>
-          </details>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact" class="reveal" aria-labelledby="contact-title">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Contact</div>
-            <h2 id="contact-title">Ready to get started?</h2>
-            <div class="section-sub">Book a short, no-pressure consultation. We'll answer your questions and share next steps.</div>
-          </div>
-        </div>
-
-        <!-- Web3Forms contact form (integrated) -->
-        <form action="https://api.web3forms.com/submit" method="POST" class="contact-form" novalidate>
-          <!-- Web3Forms access key -->
-          <input type="hidden" name="access_key" value="0fad912e-e1e4-4917-8d47-6e0a5cb18887">
-          <input type="hidden" name="subject" value="New Consultation Request - StartSite">
-          <!-- Redirect to the thank-you page after a successful submission -->
-          <input type="hidden" name="redirect" value="thank-you.html">
-          <!-- Optional: disable web3forms' default captcha UI -->
-          <input type="hidden" name="captcha" value="false">
-
-          <div class="field">
-            <label for="email">Your email</label>
-            <input id="email" name="email" type="email" placeholder="you@company.com" required>
-          </div>
-
-          <div class="field">
-            <label for="name">Your name</label>
-            <input id="name" name="name" type="text" placeholder="Jane Doe" required>
-          </div>
-
-          <div class="field">
-            <label for="message">Business / Questions</label>
-            <textarea id="message" name="message" placeholder="Tell us about your project or ask a question..." required></textarea>
-          </div>
-
-          <button type="submit" class="contact-btn">Request Consultation</button>
-
-          <div class="privacy-note">We respect your privacy — your email is used only to reply. NDAs available on request.</div>
-        </form>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="reveal" aria-labelledby="footer-title">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
-        <div style="display:flex;gap:12px;align-items:center">
-          <div class="logo" style="width:44px;height:44px;border-radius:8px">
-            <svg viewBox="0 0 100 100" width="36" height="36" aria-hidden="true"><defs><linearGradient id="g2" x1="0" x2="1"><stop offset="0" stop-color="#bf9538"/><stop offset="1" stop-color="#e7c17b"/></linearGradient></defs><path d="M70 28c-8-6-22-6-34 2-8 5-8 14 0 18 10 5 24 4 34-4" fill="none" stroke="url(#g2)" stroke-width="6" stroke-linecap="round"></path></svg>
-          </div>
-          <div>
-            <div style="font-weight:700;color:var(--gold)">StartSite</div>
-            <div class="muted" style="font-size:13px">Premium websites • Trusted process</div>
-          </div>
-        </div>
-
-        <div style="display:flex;gap:12px;align-items:center">
-          <a href="#privacy" class="muted">Privacy</a>
-          <a href="#terms" class="muted">Terms</a>
-          <div class="muted">© <span id="year"></span> StartSite</div>
-        </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn primary" onclick="smoothScrollTo('contact')">Request a Consultation</button>
+        <button class="btn secondary" onclick="smoothScrollTo('how')">How it works — 3 steps</button>
       </div>
-    </footer>
+    </div>
+
+    <img src="https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=800&q=80"
+         alt="Luxury workspace" style="border-radius:14px;box-shadow:0 25px 60px rgba(0,0,0,0.55)">
   </div>
 
-  <script>
-    /* ====== Helpful comments + beginner-friendly JS ======
-       This script:
-         - fills the footer year
-         - implements a small reveal-on-scroll
-       The contact form now submits directly to Web3Forms (no local simulation).
-    =======================================================*/
+  <!-- SECTIONS -->
+  <section id="services">
+    <div class="container">
+      <div class="kicker">Services</div>
+      <h2>What We Offer</h2>
+      <p>Enterprise-grade websites, branding, automation and more.</p>
+    </div>
+  </section>
 
-    // Fill dynamic year in footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+  <section id="innovation">
+    <div class="container">
+      <div class="kicker">Innovation</div>
+      <h2>Modern Technology</h2>
+      <p>Cutting-edge frameworks and tools powering your business.</p>
+    </div>
+  </section>
 
-    // Smooth scroll helper used by CTA buttons
-    function scrollTo(id) {
-      const target = document.getElementById(id);
-      if (!target) return;
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      // For keyboard users, shift focus to the target for immediate navigation
-      setTimeout(() => { target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }, 450);
-    }
+  <section id="how">
+    <div class="container">
+      <div class="kicker clickable" onclick="smoothScrollTo('how')">Getting Started</div>
+      <h2>How It Works — 3 Steps</h2>
+      <p>We guide you through a structured onboarding process.</p>
+    </div>
+  </section>
 
-    // Reveal-on-scroll: small, accessible implementation
-    (function(){
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (prefersReduced) {
-        document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-        return;
-      }
-      const obs = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        }
-      }, { threshold: 0.12 });
-      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    })();
+  <section id="trust">
+    <div class="container">
+      <div class="kicker">Trust</div>
+      <h2>Reliability & Security</h2>
+      <p>Your project is handled with professional care.</p>
+    </div>
+  </section>
 
-    // Keyboard accessibility: reveal focus style after Tab pressed
-    (function(){
-      function handleFirstTab(e) {
-        if (e.key === 'Tab') {
-          document.documentElement.classList.add('user-is-tabbing');
-          window.removeEventListener('keydown', handleFirstTab);
-        }
-      }
-      window.addEventListener('keydown', handleFirstTab);
-    })();
-  </script>
+  <section id="faq">
+    <div class="container">
+      <div class="kicker">FAQ</div>
+      <h2>Frequently Asked Questions</h2>
+      <p>Answers to the most common business inquiries.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="kicker clickable" onclick="smoothScrollTo('contact')">Contact</div>
+      <h2>Request a Consultation</h2>
+      <p>We’ll get back to you shortly.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  &copy; <span id="year"></span> StartSite. All rights reserved.
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  function smoothScrollTo(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.scrollIntoView({ behavior:"smooth", block:"start" });
+    setTimeout(() => {
+      el.setAttribute("tabindex","-1");
+      el.focus({ preventScroll:true });
+    }, 450);
+  }
+</script>
+
 </body>
 </html>
