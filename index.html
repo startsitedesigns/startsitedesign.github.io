@@ -1,212 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StartSite — Premium Web Design for Businesses</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>StartSite — Premium Web Design</title>
+<style>
+/* RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:Arial, sans-serif; background:#0b0b0d; color:white; }
+header { display:flex; justify-content:space-between; align-items:center; padding:20px 40px; position:fixed; top:0; width:100%; background:rgba(0,0,0,0.6); backdrop-filter:blur(10px); z-index:100; }
+nav a { margin-left:25px; color:#d4d4d4; text-decoration:none; font-weight:bold; cursor:pointer; }
+nav a:hover { color:gold; }
+section { padding:120px 40px; max-width:1200px; margin:auto; }
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0d0d0d;
-            color: white;
-        }
+/* HERO */
+.hero { text-align:center; padding-top:180px; }
+.hero h1 { font-size:3.4rem; margin-bottom:20px; }
+.hero p { font-size:1.3rem; color:#cfcfcf; }
+.btn { padding:14px 26px; background:gold; color:black; font-weight:bold; border-radius:8px; cursor:pointer; text-decoration:none; display:inline-block; margin-top:20px; }
 
-        header {
-            background: black;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
+/* ABOUT & HEADINGS */
+.about h2, .how h2, .pricing h2, .testimonials h2, .contact h2, .trusted h2, .whyus h2 { font-size:2.4rem; margin-bottom:20px; text-align:center; }
 
-        header h1 {
-            font-size: 1.8rem;
-            color: gold;
-            margin: 0;
-        }
+/* HOW */
+.steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:40px; }
+.step { padding:20px; background:#111; border:1px solid #333; border-radius:12px; }
+.step h3 { margin-bottom:10px; color:gold; }
 
-        header nav a {
-            color: white;
-            margin-left: 25px;
-            text-decoration: none;
-            font-size: 1rem;
-            opacity: 0.8;
-        }
+/* PRICING */
+.pricing-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:40px; }
+.card { background:#111; border:1px solid #333; border-radius:14px; padding:30px; text-align:center; }
+.card h3 { font-size:1.6rem; margin-bottom:10px; color:gold; }
+.card .price { font-size:2rem; margin:15px 0; }
+.card button { padding:12px 20px; border:none; background:silver; font-weight:bold; border-radius:8px; cursor:pointer; }
+.card button:hover { background:gold; color:black; }
 
-        header nav a:hover {
-            opacity: 1;
-        }
+/* BADGES */
+.badges { display:flex; justify-content:center; gap:40px; margin-top:50px; flex-wrap:wrap; }
+.badge { background:#111; padding:20px 30px; border-radius:12px; border:1px solid #333; text-align:center; min-width:200px; }
+.badge h3 { color:gold; margin-bottom:8px; }
 
-        .hero {
-            text-align: center;
-            padding: 120px 20px;
-            background: linear-gradient(to bottom, #1a1a1a, #0d0d0d);
-        }
+/* WHY US */
+.why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:40px; }
+.why-card { background:#111; border:1px solid #333; padding:25px; border-radius:12px; }
+.why-card h3 { color:gold; margin-bottom:10px; }
 
-        .hero h2 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+/* TESTIMONIALS */
+.testimonials-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px; margin-top:30px; }
+.testimonial { background:#111; padding:22px; border-radius:12px; border:1px solid #333; }
 
-        .hero p {
-            font-size: 1.25rem;
-            opacity: 0.8;
-            max-width: 700px;
-            margin: 0 auto 30px;
-        }
+/* CONTACT */
+form { display:flex; flex-direction:column; gap:15px; max-width:700px; margin:30px auto 0; }
+input, textarea, select { padding:12px; border-radius:8px; border:none; background:#1a1a1a; color:white; border:1px solid #333; }
+button.submit { padding:14px; background:gold; color:black; border:none; border-radius:8px; font-weight:bold; cursor:pointer; }
 
-        .hero button {
-            background: gold;
-            color: black;
-            padding: 15px 35px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
+/* FOOTER */
+footer { text-align:center; padding:40px; background:#0a0a0a; margin-top:60px; color:#aaa; }
+.socials a { color:#aaa; margin:0 10px; text-decoration:none; font-size:1.3rem; }
 
-        .section {
-            padding: 80px 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .section h2 {
-            font-size: 2.4rem;
-            margin-bottom: 20px;
-            color: gold;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            opacity: 0.8;
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        #contact {
-            background: #111;
-            padding: 80px 20px;
-        }
-
-        #contact form {
-            max-width: 650px;
-            margin: auto;
-        }
-
-        #contact input,
-        #contact textarea,
-        #contact select {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-
-        #contact button {
-            width: 100%;
-            padding: 15px;
-            background: gold;
-            color: black;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            opacity: 0.5;
-            font-size: 0.9rem;
-        }
-    </style>
+/* Small screens */
+@media (max-width:720px){ section{padding:80px 18px;} header{padding:14px 18px;} .hero h1{font-size:2.2rem;} }
+</style>
 </head>
-
 <body>
 
-    <header>
-        <h1>StartSite</h1>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#process">Process</a>
-            <a href="#contact">Consultation</a>
-        </nav>
-    </header>
+<header>
+<div style="display:flex; align-items:center; gap:18px;">
+    <svg width="62" height="62" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+            <linearGradient id="rocketGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#b9932f" />
+                <stop offset="60%" stop-color="#e8cf77" />
+                <stop offset="100%" stop-color="#f5e7ad" />
+            </linearGradient>
+        </defs>
+        <path d="M100 30 L120 80 A20 20 0 0 1 80 80 Z" fill="url(#rocketGold)" />
+        <circle cx="100" cy="70" r="10" fill="#0b0b0d" stroke="url(#rocketGold)" stroke-width="3" />
+        <path d="M120 90 L150 120 L120 115 Z" fill="url(#rocketGold)" />
+        <path d="M80 90 L50 120 L80 115 Z" fill="url(#rocketGold)" />
+        <path d="M100 115 Q115 145 100 175 Q85 145 100 115" fill="url(#rocketGold)" />
+    </svg>
+    <span style="font-size:2rem; font-weight:800; letter-spacing:1px; background:linear-gradient(90deg,#e8cf77,#b9932f,#f5e7ad); -webkit-background-clip:text; color:transparent;">StartSite</span>
+</div>
+<nav>
+<a onclick="scrollToSection('about')">About</a>
+<a onclick="scrollToSection('how')">How it Works</a>
+<a onclick="scrollToSection('pricing')">Pricing</a>
+<a onclick="scrollToSection('trusted')">Trusted</a>
+<a onclick="scrollToSection('contact')">Contact</a>
+</nav>
+</header>
 
-    <div class="hero">
-        <h2>Premium Websites for Small & Mid-Sized Businesses</h2>
-        <p>We design high-end, conversion-focused websites starting from $50–$65, crafted to make your business look world-class.</p>
-        <a href="#contact"><button>Book a Consultation</button></a>
+<section class="hero" id="hero">
+<h1>Modern Websites for Growing Businesses</h1>
+<p>Premium, fast, professional one-page websites.</p>
+<a class="btn" onclick="scrollToSection('contact')">Request a Consultation</a>
+</section>
+
+<section class="about" id="about">
+<h2>About StartSite</h2>
+<p>StartSite is a modern web‑design studio dedicated to helping small and mid‑sized businesses establish a powerful, trustworthy digital presence. We focus on creating websites that feel premium, intentional, and strategically aligned with your brand’s mission. Every project is built with a balance of clean aesthetics, conversion‑focused structure, and polished visual identity.</p>
+<p>Our approach blends modern design, user‑experience strategy, and fast delivery. We design websites that look luxurious and feel effortless to use — all while ensuring the backend structure remains clean, responsive, and performance‑optimized. From solo entrepreneurs to growing companies, StartSite delivers scalable design foundations that help businesses build credibility, attract customers, and stand out in competitive markets.</p>
+<p>Unlike generic website builders, StartSite creates handcrafted, custom‑made websites using clean HTML, CSS, and JavaScript — giving your brand a unique digital identity rather than a template look. We also provide guidance for hosting, long‑term updates, and positioning, making it easier for beginners and non‑technical founders to confidently manage their online presence.</p>
+</section>
+
+<section class="how" id="how">
+<h2>How It Works — 3 Steps</h2>
+<div class="steps">
+<div class="step"><h3>1. Consultation</h3><p>We learn about your goals, audience, and priorities. Expect clear next steps and a simple checklist.</p></div>
+<div class="step"><h3>2. Design & Build</h3><p>We design a focused, elegant one-page layout and implement it with clean, accessible code and subtle animations.</p></div>
+<div class="step"><h3>3. Launch & Handover</h3><p>We deliver optimized files, publishing instructions, and optional maintenance support. Launch typically in 1–3 days.</p></div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<h2>Pricing Plans</h2>
+<div class="pricing-cards">
+<div class="card"><h3>Starter</h3><p class="price">$50</p><p>Essential one-page website with polished design, responsive layout, basic SEO, and deployment instructions.</p><button onclick="choosePlan('Starter — $50')">Choose</button></div>
+<div class="card"><h3>Growth</h3><p class="price">$60</p><p>Everything in Starter plus enhanced animations, brand color refinement, contact form integration, and faster delivery.</p><button onclick="choosePlan('Growth — $60')">Choose</button></div>
+<div class="card"><h3>Premium</h3><p class="price">$65</p><p>High-end UI, advanced sections (testimonials, trusted badges, FAQ), priority support, and performance tuning.</p><button onclick="choosePlan('Premium — $65')">Choose</button></div>
+<div class="card"><h3>Ultimate</h3><p class="price">Custom</p><p>Fully custom multi-page builds, branding package, e-commerce integrations, and ongoing maintenance (contact for quote).</p><button onclick="choosePlan('Ultimate — Custom Pricing')">Choose</button></div>
+</div>
+</section>
+
+<section class="whyus" id="whyus">
+<h2>Why Choose StartSite</h2>
+<div class="why-grid">
+<div class="why-card"><h3>Fast Delivery</h3><p>Your website can be completed in 1–3 days depending on scope — we prioritize speed without sacrificing quality.</p></div>
+<div class="why-card"><h3>Premium Aesthetics</h3><p>Luxury-inspired color palette, refined typography, and balanced layouts to communicate trust and professionalism.</p></div>
+<div class="why-card"><h3>Beginner Friendly</h3><p>We provide clear instructions for GitHub Pages deployment and explain every step in plain language.</p></div>
+<div class="why-card"><h3>Affordable</h3><p>High-quality design at accessible prices — built to help businesses scale without heavy upfront costs.</p></div>
+</div>
+</section>
+
+<section class="trusted" id="trusted">
+<h2>Trusted by Growing Brands</h2>
+<p style="text-align:center; max-width:800px; margin:auto; color:#cfcfcf; font-size:1.1rem; margin-top:20px;">Businesses across multiple industries choose StartSite because we deliver reliability, speed, and premium-quality design that elevates their brand. Every website is built with long-term scalability, clean code, and a modern visual identity that aligns with professional standards.</p>
+<div class="badges" style="margin-top:40px;">
+    <div class="badge">
+        <h3>Fast 1–3 Day Delivery</h3>
+        <p>Get your full website built, designed, and ready to launch in as little as one day.</p>
     </div>
-
-    <div class="section" id="services">
-        <h2>What We Offer</h2>
-        <p>
-            StartSite builds premium websites that feel luxurious, modern, and trustworthy.  
-            We focus on clean design, strong branding, and beginner-friendly management so you always feel in control.
-        </p>
-        <br>
-        <p>
-            • High-end web design  
-            • Branding & visuals  
-            • Mobile-optimized layouts  
-            • Fast delivery  
-            • Affordable pricing for small & mid-sized businesses  
-        </p>
+    <div class="badge">
+        <h3>Modern Premium Design</h3>
+        <p>We create sleek, high-end interfaces that boost credibility and conversions.</p>
     </div>
-
-    <div class="section" id="process">
-        <h2>How It Works</h2>
-        <p>
-            1. **Consultation** — Tell us what you want and your business needs.<br><br>
-            2. **Design Blueprint** — You receive a structured website plan and theme preview.<br><br>
-            3. **Development** — We build your full site with fast turnaround.<br><br>
-            4. **Launch & Support** — We publish your site and help you manage it easily.
-        </p>
+    <div class="badge">
+        <h3>Trusted By Small & Mid-Sized Businesses</h3>
+        <p>From startups to established companies, businesses rely on our quality and consistency.</p>
     </div>
-
-    <!-- ⭐ FULL CONTACT / CONSULTATION FORM ⭐ -->
-    <div id="contact">
-        <h2 style="text-align:center;">Book a Free Consultation</h2>
-        <p style="text-align:center; max-width:600px; margin:auto; opacity:0.7;">
-            Fill out this form and we’ll contact you within 24 hours.
-        </p>
-        <br>
-
-        <!-- ⭐ Formspree endpoint for startsitedesigns@gmail.com ⭐ -->
-        <form action="https://formspree.io/f/mzzbqkwn" method="POST">
-
-            <input type="text" name="name" placeholder="Your Name" required>
-
-            <input type="email" name="email" placeholder="Your Email" required>
-
-            <input type="text" name="business" placeholder="Your Business Name (optional)">
-
-            <select name="service">
-                <option value="">What service do you need?</option>
-                <option value="Full Website">Full Website</option>
-                <option value="Redesign">Redesign</option>
-                <option value="Branding">Branding</option>
-                <option value="Other">Other</option>
-            </select>
-
-            <textarea name="message" placeholder="Describe what you need..." rows="5" required></textarea>
-
-            <button type="submit">Send Consultation Request</button>
-        </form>
+    <div class="badge">
+        <h3>Secure & Optimized</h3>
+        <p>Fully responsive, SEO-ready, and built with performance and security in mind.</p>
     </div>
+</div>
+</section>
 
-    <footer>
-        © 2025 StartSite — All Rights Reserved
-    </footer>
+<section class="contact" id="contact">
+<h2>Request a Consultation</h2>
+<!-- Web3Forms contact form -->
+<form action="https://api.web3forms.com/submit" method="POST">
+  <input type="hidden" name="access_key" value="fa2e63ae-315e-46ba-8a10-cebf3988a2c4">
+  <input type="hidden" name="subject" value="New Consultation Request - StartSite">
+  <input type="hidden" name="redirect" value="thank-you.html">
+
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <input type="text" name="business" placeholder="Business Name (optional)">
+
+  <!-- Hidden selected plan (sent in email) -->
+  <input type="hidden" id="selectedPlanInput" name="selectedPlan" value="None">
+
+  <textarea id="project" name="message" rows="6" placeholder="Tell us about your website needs" required></textarea>
+
+  <!-- Web3Forms optional fields -->
+  <input type="hidden" name="captcha" value="false">
+
+  <button class="submit" type="submit">Send Consultation Request</button>
+</form>
+</section>
+
+<footer>
+<p>© 2025 StartSite. All Rights Reserved.</p>
+<div class="socials">
+<a href="#">Instagram</a>
+<a href="#">TikTok</a>
+<a href="#">Email</a>
+</div>
+</footer>
+
+<script>
+// Smooth scroll helper
+function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Single choosePlan function — sets hidden input and pre-fills message textarea
+function choosePlan(plan) {
+    const hidden = document.getElementById('selectedPlanInput');
+    const textarea = document.getElementById('project');
+    if (hidden) hidden.value = plan;
+    if (textarea) {
+        // Prepend selected plan to message, preserving any existing text but avoid duplicating
+        const current = textarea.value || '';
+        const prefix = 'Selected Plan: ' + plan + "\n\n";
+        if (!current.startsWith('Selected Plan:')) {
+            textarea.value = prefix + current;
+        } else {
+            // replace existing Selected Plan line
+            textarea.value = prefix + current.replace(/Selected Plan:[^\n]*\n\n/, '');
+        }
+    }
+    // Move to contact section for convenience
+    scrollToSection('contact');
+}
+</script>
 
 </body>
 </html>
